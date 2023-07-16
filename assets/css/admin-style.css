@@ -1,0 +1,31 @@
+.wp-block-air-gut-tg-telegram-group a,
+.wp-block-air-gut-tg-telegram-group h3,
+.wp-block-air-gut-tg-telegram-group p,
+.editor-styles-wrapper .block-editor-block-list__layout .air-telegramm__right h3 {
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 0 10px 0;
+}
+
+.wp-block-air-gut-tg-telegram-group a:hover {
+    color: #ffff;
+    text-decoration: none;
+}
+.air-telegramm-phrase{
+    position:relative;
+}
+.air-telegramm-phrase button.components-button.is-destructive {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    right: 0;
+    padding: 0 3px;
+    height: 20px;
+    align-items: center;font-size: 12px;
+}
+
+.air-telegramm-phrase button.components-button.is-destructive span{
+    font-size: 12px;
+    height: 12px;
+    width: 12px;
+}

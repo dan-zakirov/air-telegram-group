@@ -1,0 +1,67 @@
+.air-telegramm > a {
+    border-radius: 5px;
+    max-width: 500px;
+    color: #fff;
+    background: linear-gradient(-45deg, #0080bc, #0268a4, #2164c4, #045fa4);
+    background-size: 400% 400%;
+    animation: tgchannel 15s ease infinite;
+    position: relative;
+    display: grid;
+    grid-template-columns: 5em 1fr;
+    align-items: center;
+    padding: 1em;
+    gap: 1em;
+    margin: 0 auto;
+    text-decoration: none !important;
+}
+
+.air-telegramm > a:focus,
+.air-telegramm > a:active {
+    color: #fff !important;
+}
+
+.air-telegramm__left img {
+    width: 75px;
+    height: 75px;
+}
+
+.air-telegramm__right, .air-telegramm__right h3, .air-telegramm__right p {
+    color: #fff;
+}
+
+.air-telegramm__left svg {
+    width: 5em;
+    height: 5em;
+}
+
+@keyframes tgchannel {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.air-telegramm__right > p {
+    margin:0 !important;
+}
+.air-tg-show p {
+    opacity: 0;
+    max-height: 35px;
+    animation: air-fade-in 1.9s ease-in-out forwards;
+    margin:0 !important;
+}
+
+@keyframes air-fade-in {
+    0% {
+        max-height: 35px;
+    }
+    100% {
+        opacity: 1;
+        max-height: 300px;
+    }
+}
+

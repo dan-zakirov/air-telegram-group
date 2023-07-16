@@ -1,0 +1,72 @@
+# Copyright (C) 2023 Your Name
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Air Gutenberg Block to Show Telegram Group 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/air-telegram-group\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-07-16T19:43:39+03:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: air-telegram-group\n"
+
+#. Plugin Name of the plugin
+msgid "Air Gutenberg Block to Show Telegram Group"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://example.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Gutenberg Block to display a Telegram block."
+msgstr ""
+
+#. Author of the plugin
+msgid "Your Name"
+msgstr ""
+
+#: air-telegram-group.php:84
+msgid "Air Gutenberg Block"
+msgstr ""
+
+#: assets/js/block.js:10
+msgid "Air Telegram Group"
+msgstr ""
+
+#: assets/js/block.js:11
+msgid "Block to display a Telegram group."
+msgstr ""
+
+#: assets/js/block.js:78
+msgid "Telegram Group Settings"
+msgstr ""
+
+#: assets/js/block.js:80
+msgid "Telegram Group Link"
+msgstr ""
+
+#: assets/js/block.js:84
+msgid "Phrases"
+msgstr ""
+
+#: assets/js/block.js:103
+msgid "Delete"
+msgstr ""
+
+#: assets/js/block.js:113
+msgid "Add Phrase"
+msgstr ""
+
+#: assets/js/block.js:133
+msgid "Enter Title"
+msgstr ""
+
+#: assets/js/block.js:139
+msgid "Enter Description"
+msgstr ""
