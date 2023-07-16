@@ -100,7 +100,7 @@
                                         },
                                     }, [
                                         el(Dashicon, { icon: 'dismiss' }),
-                                        __('Delete', 'air-telegram-group') // Добавлено слово на английском
+                                        __('Delete', 'air-telegram-group')
                                     ])
                                 );
                             })
@@ -109,7 +109,7 @@
                             isPrimary: true,
                             onClick: addPhrase,
                         }, [
-                            el(Dashicon, { icon: 'plus' }), // Добавлена иконка dashicons для символизации добавления
+                            el(Dashicon, { icon: 'plus' }),
                             __('Add Phrase', 'air-telegram-group')
                         ])
                     )
