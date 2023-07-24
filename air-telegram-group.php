@@ -4,7 +4,7 @@
  * Plugin URI: https://example.com
  * Description: Gutenberg Block to display a Telegram block.
  * Version: 1.0.0
- * Author: Dan Zakirov
+ * Author: Your Name
  * Author URI: https://example.com
  * License: GPL2
  * Text Domain: air-telegram-group
@@ -19,14 +19,10 @@ defined( 'ABSPATH' ) || exit;
  * Load plugin textdomain.
  */
 function air_gut_tg_load_plugin_textdomain() {
-    load_plugin_textdomain( 'air-telegram-group', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain('air-telegram-group', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 add_action( 'plugins_loaded', 'air_gut_tg_load_plugin_textdomain' );
 
-function myguten_set_script_translations() {
-    wp_set_script_translations( 'air-gut-tg-block-sc', 'air-telegram-group' );
-}
-add_action( 'init', 'myguten_set_script_translations' );
 
 // Register block scripts and styles
 function air_gut_tg_enqueue_block_assets() {
@@ -34,9 +30,11 @@ function air_gut_tg_enqueue_block_assets() {
     wp_enqueue_script(
         'air-gut-tg-block-sc',
         plugin_dir_url( __FILE__ ) . 'assets/js/block.js',
-        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n', 'wp-components', 'wp-data' ),
+        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n', 'wp-components' ),
         filemtime( plugin_dir_path( __FILE__ ) . 'assets/js/block.js' )
     );
+
+    wp_set_script_translations( 'air-gut-tg-block-sc', 'air-telegram-group', plugin_dir_path( __FILE__ ) . 'languages' );
 
     wp_enqueue_style(
         'air-gut-tg-additional-style',
