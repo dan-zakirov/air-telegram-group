@@ -25,6 +25,15 @@
     height: 75px;
 }
 
+.air-telegramm__left {
+    border-radius: 50px;
+}
+
+.air-telegramm__left img {
+    width: 100%;
+    margin:auto;
+}
+
 .air-telegramm__right, .air-telegramm__right h3, .air-telegramm__right p {
     color: #fff;
 }
@@ -45,14 +54,16 @@
         background-position: 0% 50%;
     }
 }
+
 .air-telegramm__right > p {
-    margin:0 !important;
+    margin: 0 !important;
 }
+
 .air-tg-show p {
     opacity: 0;
     max-height: 35px;
     animation: air-fade-in 1.9s ease-in-out forwards;
-    margin:0 !important;
+    margin: 0 !important;
 }
 
 @keyframes air-fade-in {

@@ -29,3 +29,7 @@
     height: 12px;
     width: 12px;
 }
+.air-telegramm__left img {
+    width: 100%;
+    margin:auto;
+}
