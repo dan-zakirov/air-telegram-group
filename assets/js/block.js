@@ -1,4 +1,4 @@
-(function (blocks, editor, i18n, element, components) {
+(function (blocks, blockEditor, i18n, element, components) {
     var el = element.createElement;
     var __ = i18n.__;
     var TextControl = components.TextControl;
@@ -12,11 +12,25 @@
     blocks.registerBlockType('air-gut-tg/telegram-group', {
         title: __('Air Telegram Group', 'air-telegram-group'),
         description: __('Block to display a Telegram group.', 'air-telegram-group'),
-        icon: 'megaphone',
+        icon: {
+            background: '#f8f5ff',
+            foreground: '#000',
+            src: 'megaphone',
+        },
         category: 'air-gut-tg',
         supports: {
             html: false,
             align: true,
+        },
+        example: {
+            attributes: {
+                title: __('Title Telegram Channel', 'air-telegram-group'),
+                description: __('The description of Your Telegram channel can be a simple sentence. Additionally, you can add phrases that will change at specific intervals.', 'air-telegram-group'),
+                lineClamp: 4,
+                maxWidth: 600,
+                margin: 60,
+            },
+            viewportWidth: 600,
         },
         attributes: {
             clientId: {
@@ -71,7 +85,7 @@
         edit: function (props) {
 
             var clientId = props.clientId;
-            props.setAttributes({ clientId: clientId });
+            props.setAttributes({clientId: clientId});
 
             var telegramLink = props.attributes.telegramLink;
             var title = props.attributes.title;
@@ -86,31 +100,31 @@
             var widthOfImageGroup = props.attributes.widthOfImageGroup;
 
             function onChangeTelegramLink(newLink) {
-                props.setAttributes({ telegramLink: newLink });
+                props.setAttributes({telegramLink: newLink});
             }
 
             function onChangeTitle(newTitle) {
-                props.setAttributes({ title: newTitle });
+                props.setAttributes({title: newTitle});
             }
 
             function onChangeDescription(newDescription) {
-                props.setAttributes({ description: newDescription });
+                props.setAttributes({description: newDescription});
             }
 
             function onChangePhrases(newPhrases) {
-                props.setAttributes({ phrases: newPhrases });
+                props.setAttributes({phrases: newPhrases});
             }
 
             function addPhrase() {
                 var newPhrases = phrases.concat('');
-                props.setAttributes({ phrases: newPhrases });
+                props.setAttributes({phrases: newPhrases});
             }
 
             function removePhrase(index) {
                 var newPhrases = phrases.filter(function (_, i) {
                     return index !== i;
                 });
-                props.setAttributes({ phrases: newPhrases });
+                props.setAttributes({phrases: newPhrases});
             }
 
             function onClickLink(event) {
@@ -119,36 +133,36 @@
 
             function onImageSelect(imageObject) {
                 if (imageObject && imageObject.url) {
-                    props.setAttributes({ image: imageObject.url });
+                    props.setAttributes({image: imageObject.url});
                 }
             }
 
             function onImageRemove() {
-                props.setAttributes({ image: '' });
+                props.setAttributes({image: ''});
             }
 
             function onChangeMargin(newMargin) {
-                props.setAttributes({ margin: newMargin });
+                props.setAttributes({margin: newMargin});
             }
 
             function onChangePadding(newPadding) {
-                props.setAttributes({ padding: newPadding });
+                props.setAttributes({padding: newPadding});
             }
 
             function onChangeMaxWidth(newMaxWidth) {
-                props.setAttributes({ maxWidth: newMaxWidth });
+                props.setAttributes({maxWidth: newMaxWidth});
             }
 
             function onChangeLineClamp(newLineClamp) {
-                props.setAttributes({ lineClamp: newLineClamp });
+                props.setAttributes({lineClamp: newLineClamp});
             }
 
             function onChangeIconPosition(newIconPosition) {
-                props.setAttributes({ iconPosition: newIconPosition });
+                props.setAttributes({iconPosition: newIconPosition});
             }
 
             function onChangeWidthOfImageGroup(newWidth) {
-                props.setAttributes({ widthOfImageGroup: newWidth });
+                props.setAttributes({widthOfImageGroup: newWidth});
             }
 
             var paragraphStyle = {
@@ -162,21 +176,31 @@
 
             return el(
                 'div',
-                { className: `air-${clientId}`, 'data-phrases': JSON.stringify(phrases) },
-                el(editor.InspectorControls, {},
-                    el(components.PanelBody, { title: __('Telegram Group Settings', 'air-telegram-group'), initialOpen: true },
+                {className: `air-${clientId}`, 'data-phrases': JSON.stringify(phrases)},
+                el(blockEditor.InspectorControls, {},
+                    el(components.PanelBody, {
+                            title: __('Telegram Group Settings', 'air-telegram-group'),
+                            initialOpen: true
+                        },
                         el(TextControl, {
-                            label: __('Telegram Group Link', 'air-telegram-group'),
+                            label: __('Telegram TG Link', 'air-telegram-group'),
                             value: telegramLink,
                             onChange: onChangeTelegramLink,
                         }),
-                        el(BaseControl, { label: __('Group Image', 'air-telegram-group') },
-                            el('div', { className: 'components-base-control__field' },
-                                el('span', { className: 'components-base-control__label' }, __('Group Image', 'air-telegram-group')),
-                                el('img', { src: image || '/wp-content/plugins/air-telegram-group/assets/img/tg.svg', alt: 'Telegram', style: { maxWidth: '100%' } }),
-                                el('div', {},
+                        el(BaseControl, {label: __('Group TG Image', 'air-telegram-group')},
+                            el('div', {className: 'components-base-control__field'},
+                                el('span', {className: 'components-base-control__label air-image-control__label'}, __('Recommended size 512x512px', 'air-telegram-group')),
+                                el('div', {className: 'air-telegramm__icon-edit'}, [
+                                    el('img', {
+                                        src: image || '/wp-content/plugins/air-telegram-group/assets/img/tg.svg',
+                                        alt: 'Telegram',
+                                        style: {maxWidth: '100%'}
+                                    })
+                                ]),
+                                el('div', {className: 'air-telegramm__image'},
                                     el(components.Button, {
                                         isDefault: true,
+                                        className: 'air-telegramm__Button-edit',
                                         onClick: function () {
                                             var mediaUploader = wp.media({
                                                 title: __('Select Group Image', 'air-telegram-group'),
@@ -190,10 +214,11 @@
 
                                             mediaUploader.open();
                                         },
-                                    }, __('Select Group Image', 'air-telegram-group')),
+                                    }, el(Dashicon, {icon: 'format-image'}), __('Select Group Image', 'air-telegram-group')),
                                     el(components.Button, {
                                         isLink: true,
                                         onClick: onImageRemove,
+                                        className: 'air-telegramm__remove-image',
                                     }, __('Remove Image', 'air-telegram-group'))
                                 )
                             )
@@ -202,9 +227,9 @@
                             label: __('Icon Position', 'air-telegram-group'),
                             value: iconPosition,
                             options: [
-                                { label: __('Icon left', 'air-telegram-group'), value: 'Icon-left' },
-                                { label: __('Icon top', 'air-telegram-group'), value: 'Icon-top' },
-                                { label: __('Icon right', 'air-telegram-group'), value: 'Icon-right' },
+                                {label: __('Icon left', 'air-telegram-group'), value: 'Icon-left'},
+                                {label: __('Icon top', 'air-telegram-group'), value: 'Icon-top'},
+                                {label: __('Icon right', 'air-telegram-group'), value: 'Icon-right'},
                             ],
                             onChange: onChangeIconPosition,
                         }),
@@ -248,9 +273,9 @@
                             max: 10,
                         }),
                         el('h3', {}, __('Phrases', 'air-telegram-group')),
-                        el('div', { className: 'air-telegramm-phrases' },
+                        el('div', {className: 'air-telegramm-phrases'},
                             phrases.map(function (phrase, index) {
-                                return el('div', { key: index, className: 'air-telegramm-phrase' },
+                                return el('div', {key: index, className: 'air-telegramm-phrase'},
                                     el(TextareaControl, {
                                         value: phrase,
                                         onChange: function (newPhrase) {
@@ -265,7 +290,7 @@
                                             removePhrase(index);
                                         },
                                     }, [
-                                        el(Dashicon, { icon: 'dismiss' }),
+                                        el(Dashicon, {icon: 'dismiss'}),
                                         __('Delete', 'air-telegram-group')
                                     ])
                                 );
@@ -275,12 +300,12 @@
                             isPrimary: true,
                             onClick: addPhrase,
                         }, [
-                            el(Dashicon, { icon: 'plus' }),
+                            el(Dashicon, {icon: 'plus'}),
                             __('Add Phrase', 'air-telegram-group')
                         ]),
                     )
                 ),
-                el('div', { className: `air-telegramm air-${clientId}`, 'data-phrases': JSON.stringify(phrases) },
+                el('div', {className: `air-telegramm air-${clientId}`, 'data-phrases': JSON.stringify(phrases)},
                     el('a', {
                             href: telegramLink,
                             className: `wp-block-air-gut-tg-telegram-group ${iconPosition}`,
@@ -311,23 +336,30 @@
                             },
                             onClick: onClickLink,
                         },
-                        el('div', { className: 'air-telegramm__left', style: iconPosition === 'Icon-right' ? { order: 2 } : {} },
+                        el('div', {
+                                className: 'air-telegramm__left',
+                                style: iconPosition === 'Icon-right' ? {order: 2} : {}
+                            },
                             el('img',
                                 {
-                                    src: image || '/wp-content/plugins/air-telegram-group/assets/img/tg.svg', alt: 'Telegram',
+                                    src: image || '/wp-content/plugins/air-telegram-group/assets/img/tg.svg',
+                                    alt: 'Telegram',
                                     style: {
                                         maxWidth: `${widthOfImageGroup}em`,
                                     },
                                 })
                         ),
-                        el('div', { className: 'air-telegramm__right', style: iconPosition === 'Icon-right' ? { order: 1 } : {} },
-                            el(editor.RichText, {
+                        el('div', {
+                                className: 'air-telegramm__right',
+                                style: iconPosition === 'Icon-right' ? {order: 1} : {}
+                            },
+                            el(blockEditor.RichText, {
                                 tagName: 'h3',
                                 value: title,
                                 onChange: onChangeTitle,
                                 placeholder: __('Enter Title', 'air-telegram-group'),
                             }),
-                            el(editor.RichText, {
+                            el(blockEditor.RichText, {
                                 tagName: 'p',
                                 value: description,
                                 onChange: onChangeDescription,
@@ -340,6 +372,7 @@
             );
         },
         save: function (props) {
+
             var clientId = props.attributes.clientId;
             var telegramLink = props.attributes.telegramLink;
             var title = props.attributes.title;
@@ -353,57 +386,67 @@
             var iconPosition = props.attributes.iconPosition;
             var widthOfImageGroup = props.attributes.widthOfImageGroup;
 
-            var styleTag = el('style', {}, `
-            .air-${clientId} p {
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis; 
-                -webkit-line-clamp: ${lineClamp};
-                max-height: ${lineClamp * 1.5}em;
-            }
-
-            .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-top {
-                    grid-template-columns: repeat(auto-fit, minmax(${widthOfImageGroup}em, 100%));
-                    justify-content: center;
-                    text-align: center;
-            }
-            
-            .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-right {
+            var iconPositionStyle = '';
+            if (iconPosition === 'Icon-left') {
+                iconPositionStyle = `
+                .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-left {  
+                    text-align: left;
+                }
+            `;
+            } else if (iconPosition === 'Icon-right') {
+                iconPositionStyle = `
+                .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-right {
                     grid-template-columns: 1fr ${widthOfImageGroup}em;
                     justify-content: end;
                     text-align: right;
+                }
+                .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-right > .air-telegramm__left {
+                    order: 2;
+                }
+                .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-right > .air-telegramm__right {
+                    order: 1;
+                }
+            `;
+            } else {
+                iconPositionStyle = `
+                .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-top {
+                    grid-template-columns: repeat(auto-fit, minmax(${widthOfImageGroup}em, 100%));
+                    justify-content: center;
+                    text-align: center;
+                }
+            `;
             }
-            
-            .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-right > .air-telegramm__left{
-                order:2
-            }
-            
-            .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-right > .air-telegramm__right{
-                order:1
-            }
-            
-            .air-${clientId} .wp-block-air-gut-tg-telegram-group.Icon-left {  
-                    text-align:left
-            }
-            
-        `);
+
+            var styleTag = el('style', {}, `
+                .air-${clientId} p {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis; 
+                    -webkit-line-clamp: ${lineClamp};
+                    max-height: ${lineClamp * 1.5}em;
+                }
+                ${iconPositionStyle}
+            `);
 
             return el(
                 'div',
-                { className: `air-telegramm air-${clientId}`, 'data-phrases': JSON.stringify(phrases) },
+                {className: `air-telegramm air-${clientId}`, 'data-phrases': JSON.stringify(phrases)},
                 styleTag,
                 el('a', {
                         href: telegramLink,
-                        className: `wp-block-air-gut-tg-telegram-group ${iconPosition}`, // Добавляем класс с позицией иконки
+                        className: `wp-block-air-gut-tg-telegram-group ${iconPosition}`,
                         target: '_blank',
                         rel: 'noopener',
-                        style: { margin: `${margin}px auto`, padding: `${padding}px`, maxWidth: `${maxWidth}px` },
+                        style: {margin: `${margin}px auto`, padding: `${padding}px`, maxWidth: `${maxWidth}px`},
                     },
-                    el('div', { className: 'air-telegramm__left' }, // Добавляем стиль с шириной изображения группы
-                        el('img', { src: image || '/wp-content/plugins/air-telegram-group/assets/img/tg.svg', alt: 'Telegram' })
+                    el('div', {className: 'air-telegramm__left'},
+                        el('img', {
+                            src: image || '/wp-content/plugins/air-telegram-group/assets/img/tg.svg',
+                            alt: 'Telegram'
+                        })
                     ),
-                    el('div', { className: 'air-telegramm__right' },
+                    el('div', {className: 'air-telegramm__right'},
                         el('h3', {}, title),
                         el('p', {}, description),
                     )
@@ -413,7 +456,7 @@
     });
 })(
     window.wp.blocks,
-    window.wp.editor,
+    window.wp.blockEditor,
     window.wp.i18n,
     window.wp.element,
     window.wp.components
